@@ -1,5 +1,6 @@
 "use client";
 import { login } from "@/actions/auth";
+import { redirect } from "next/navigation";
 import React, { FormEvent } from "react";
 
 export default function page() {
@@ -9,7 +10,12 @@ export default function page() {
     const username = formData.get("username") as string;
     const password = formData.get("password") as string;
 
-    await login({ username, password });
+    try {
+      await login({ username, password });
+      redirect("/dashboard");
+    } catch (error) {
+      console.error(error);
+    }
   }
   return (
     <section className="flex items-center justify-center h-dvh">
