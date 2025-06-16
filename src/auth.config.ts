@@ -12,7 +12,6 @@ export const authConfig: NextAuthConfig = {
 
       authorize: async (credentials) => {
         const url = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000") + "/user/login";
-        console.log(url);
         const userInResponseFormat = await fetch(url, {
           method: "POST",
           headers: {
@@ -26,7 +25,6 @@ export const authConfig: NextAuthConfig = {
         });
 
         const userInJSONFormat = await userInResponseFormat.json();
-        console.log("user data: ", userInJSONFormat);
         if (!!!userInJSONFormat) return null;
         return { ...userInJSONFormat };
       },
