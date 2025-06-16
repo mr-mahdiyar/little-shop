@@ -40,6 +40,9 @@ export const authConfig: NextAuthConfig = {
       }
       return token;
     },
+    async redirect({ url }) {
+      return url;
+    },
     async session({ token, session }) {
       if (!!!token) return session;
 
