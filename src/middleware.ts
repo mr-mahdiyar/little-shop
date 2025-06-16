@@ -3,7 +3,7 @@ import { isPathMatchedWithAuthPaths, isPathMatchedWithProtectedPaths } from "./u
 import { NextResponse } from "next/server";
 
 export default auth(async (req) => {
-  
+
   const currentPath = req.nextUrl.pathname;
   const isUserLoggedIn = !!req.auth;
   const isAuthPath = isPathMatchedWithAuthPaths(currentPath);
@@ -11,10 +11,10 @@ export default auth(async (req) => {
 
   switch (isUserLoggedIn) {
     case true: {
-      if (isAuthPath) return NextResponse.redirect(new URL("/dashboard", process.env.BASE_PATH));
+      if (isAuthPath) return NextResponse.redirect(new URL("/dashboard", req.url));
     }
     case false: {
-      if (isProtectedPath) return NextResponse.redirect(new URL("/auth/login", process.env.BASE_PATH));
+      if (isProtectedPath) return NextResponse.redirect(new URL("/auth/login", req.url));
     }
   }
 });
