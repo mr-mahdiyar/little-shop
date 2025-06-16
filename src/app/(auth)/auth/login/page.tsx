@@ -1,6 +1,5 @@
 "use client";
 import { login } from "@/actions/auth";
-import { redirect } from "next/navigation";
 import React, { FormEvent } from "react";
 
 export default function page() {
@@ -12,7 +11,6 @@ export default function page() {
 
     try {
       await login({ username, password });
-      redirect("/dashboard");
     } catch (error) {
       console.error(error);
     }
