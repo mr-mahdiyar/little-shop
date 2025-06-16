@@ -8,9 +8,15 @@ export async function login(credentials: { username: string | null; password: st
 export async function getSession() {
   return await auth();
 }
+
 export async function getAccessToken() {
   const session = await auth();
   if (!!!session?.user) return null;
 
   return session.user.accessToken;
+}
+export async function authenticationChecking() {
+  const session = await getSession();
+  if (!!session?.user?.accessToken) return true;
+  return false;
 }
