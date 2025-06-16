@@ -3,6 +3,13 @@ import Credentials from "next-auth/providers/credentials";
 
 declare module "next-auth" {
   interface User {
+    id: string;
+    username: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+    gender: string;
+    image: string;
     accessToken: string;
     refreshToken: string;
   }
