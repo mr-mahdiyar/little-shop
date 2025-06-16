@@ -12,9 +12,11 @@ export default auth(async (req) => {
   switch (isUserLoggedIn) {
     case true: {
       if (isAuthPath) return NextResponse.redirect(new URL("/dashboard", req.url));
+      break;
     }
     case false: {
       if (isProtectedPath) return NextResponse.redirect(new URL("/auth/login", req.url));
+      break;
     }
   }
 });
