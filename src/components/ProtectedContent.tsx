@@ -1,10 +1,11 @@
 import { authenticationChecking } from "@/actions/auth";
-import { type ReactNode } from "react";
+import { ComponentPropsWithoutRef } from "react";
 
-export default async function ProtectedContent({ children }: { children: ReactNode }) {
+type ProtectedContentProps = Pick<ComponentPropsWithoutRef<"section">, "children" | "className">;
+export default async function ProtectedContent({ children, className }: ProtectedContentProps) {
   const isUserLoggedIn = await authenticationChecking();
 
-  if (!!!isUserLoggedIn) return <section>برای مشاهده این قسمت باید وارد شوید.</section>;
+  if (!!!isUserLoggedIn) return <section>You have to login for visit content.</section>;
 
-  return <section>{children}</section>;
+  return <section className={className}>{children}</section>;
 }
