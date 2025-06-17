@@ -3,6 +3,8 @@ import axios from "axios";
 
 const apiCaller = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000",
+  timeout: 5000,
+  timeoutErrorMessage: "Timeout error when fetching data occurred."
 });
 
 apiCaller.interceptors.request.use(

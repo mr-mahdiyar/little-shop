@@ -2,7 +2,7 @@
 import { login } from "@/actions/auth";
 import React, { FormEvent, useState } from "react";
 
-export default function page() {
+export default function LoginPage() {
   
   const [isLoading, setIsLoading] = useState<boolean>(false);
 

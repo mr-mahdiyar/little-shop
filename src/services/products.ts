@@ -1,4 +1,3 @@
-import { Product } from "@/types/products";
 import apiCaller from "./api-caller";
 
 export async function getProducts() {
