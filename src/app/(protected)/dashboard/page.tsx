@@ -1,4 +1,6 @@
-import { signOut } from "@/auth";
+"use client";
+
+import { logout } from "@/actions/auth";
 
 export default function page() {
   return (
@@ -6,8 +8,7 @@ export default function page() {
       <h1>Here is dashboard page.</h1>
       <form
         action={async () => {
-          "use server";
-          await signOut({ redirectTo: "/auth/login" });
+          await logout();
         }}
       >
         <button className="bg-red-500 text-white p-0.5 rounded-md hover:bg-red-400 cursor-pointer">logout</button>
