@@ -6,14 +6,11 @@ export default function useProducts() {
     queryKey: ["products"],
     queryFn: getProducts,
     select: (response) => response.data,
-    retry: 1
+    retry: 1,
   });
 
   return {
-    products: data?.products,
-    limit: data?.limit,
-    skip: data?.skip,
-    total: data?.total,
+    products: data,
     isLoading,
     isError,
     error,
