@@ -6,19 +6,19 @@ export const authConfig: NextAuthConfig = {
     Credentials({
       name: "credentials",
       credentials: {
-        username: {},
+        email: {},
         password: {},
       },
 
       authorize: async (credentials) => {
-        const url = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000") + "/user/login";
+        const url = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000") + "/auth/login";
         const userInResponseFormat = await fetch(url, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            username: credentials.username as string,
+            email: credentials.email as string,
             password: credentials.password as string,
           }),
           cache: "no-cache",
@@ -26,7 +26,11 @@ export const authConfig: NextAuthConfig = {
 
         const userInJSONFormat = await userInResponseFormat.json();
         if (!!!userInJSONFormat) return null;
-        return { ...userInJSONFormat };
+        return {
+          accessToken: userInJSONFormat.access_token,
+          refreshToken: userInJSONFormat.refresh_token,
+          ...userInJSONFormat
+        };
       },
     }),
   ],

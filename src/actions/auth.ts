@@ -2,7 +2,7 @@
 
 import { auth, signIn, signOut } from "@/auth";
 
-export async function login(credentials: { username: string | null; password: string | null }) {
+export async function login(credentials: { email: string | null; password: string | null }) {
   await signIn("credentials", { ...credentials, redirectTo: "/dashboard" });
 }
 
