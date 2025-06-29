@@ -1,6 +1,6 @@
 import { getUserData } from "@/services/user";
-import { UseQueryResult, useQuery } from "@tanstack/react-query";
-import { User } from "next-auth";
+import { useQuery } from "@tanstack/react-query";
+
 
 export default function useUser() {
 
