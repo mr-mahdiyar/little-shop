@@ -6,7 +6,7 @@ export default function Product({ category: { name: category }, images, price, s
   return (
     <Link
       href={`/products/${slug}`}
-      className="flex flex-col w-[350px] items-center p-4 rounded-xl bg-gray-300 gap-y-2"
+      className="flex flex-col w-[350px] items-center p-4 rounded-xl bg-gray-100/40 hover:bg-gray-100 gap-y-2"
     >
       <Image src={images[0]} alt={title} width={400} height={600} className="aspect-square w-full" />
       <h1>{title}</h1>
