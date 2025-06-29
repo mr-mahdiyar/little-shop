@@ -1,5 +1,6 @@
 "use client";
 import { login } from "@/actions/auth";
+import Loading from "@/components/Loading";
 import React, { FormEvent, useState } from "react";
 
 export default function LoginPage() {
@@ -36,7 +37,8 @@ export default function LoginPage() {
           className={`bg-yellow-200 ${isLoading && "bg-yellow-300"} p-1 rounded-md hover:bg-yellow-300 cursor-pointer `}
           disabled={isLoading}
         >
-          {isLoading ? "Loading..." : "confirm"}
+          {isLoading ? <Loading className="py-3 mx-auto scale-50" /> : "confirm"}
+          {/* confirm */}
         </button>
       </form>
     </section>
