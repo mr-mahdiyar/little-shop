@@ -4,9 +4,11 @@ import { logout } from "@/actions/auth";
 import useProducts from "@/hooks/useProducts";
 import useUser from "@/hooks/useUser";
 import Loading from "@/components/Loading";
+import Product from "@/components/Product";
+import Container from "@/components/Container";
 
 export default function DashboardPage() {
-  const { error, isError: isProductsError, isLoading: isProductsLoading } = useProducts();
+  const { products, error, isError: isProductsError, isLoading: isProductsLoading } = useProducts();
   const { isLoading: isUserDataLoading, userData } = useUser();
 
   if (isProductsLoading) {
@@ -24,15 +26,22 @@ export default function DashboardPage() {
     );
   }
   return (
-    <div className="flex max-w-72 mx-auto justify-between mt-10 items-center">
-      {isUserDataLoading ? <Loading /> : <h1>Welcome {userData?.name}</h1>}
-      <form
-        action={async () => {
-          await logout();
-        }}
-      >
-        <button className="bg-red-500 text-white p-0.5 rounded-md hover:bg-red-400 cursor-pointer">logout</button>
-      </form>
-    </div>
+    <Container className="flex flex-col gap-y-4">
+      <div className="flex mx-auto justify-between mt-10 items-center w-full">
+        {isUserDataLoading ? <Loading /> : <h1>Welcome {userData?.name}</h1>}
+        <form
+          action={async () => {
+            await logout();
+          }}
+        >
+          <button className="bg-red-500 text-white p-0.5 rounded-md hover:bg-red-400 cursor-pointer">logout</button>
+        </form>
+      </div>
+      <section className="flex flex-wrap justify-between gap-y-8">
+        {products?.map((product) => (
+          <Product key={product.id} {...product} />
+        ))}
+      </section>
+    </Container>
   );
 }
