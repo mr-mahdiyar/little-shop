@@ -10,9 +10,9 @@ export default function useProducts() {
   });
 
   return {
-    products: data,
-    isLoading,
-    isError,
-    error,
+    allProducts: data,
+    isProductsLoading: isLoading,
+    isProductsError: isError,
+    productsError: error
   };
 }

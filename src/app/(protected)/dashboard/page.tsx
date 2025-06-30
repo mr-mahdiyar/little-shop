@@ -14,31 +14,32 @@ import useSearchEndPintCreator from "@/hooks/useSearchEndPointCreator";
 import useFilteredProducts from "@/hooks/useFilteredProducts";
 
 export default function DashboardPage() {
-  
+
   const searchTermsAndValues = useSearchTermsAndValues("title");
   const searchEndPoint = useSearchEndPintCreator(searchTermsAndValues);
 
-  const { filteredProducts } = useFilteredProducts(searchEndPoint);
-
-  const { products: allProducts, error, isError: isProductsError, isLoading: isProductsLoading } = useProducts();
-  const { isLoading: isUserDataLoading, userData } = useUser();
+  const { filteredProducts, isFilteredProductsError, isFilteredProductsLoading } = useFilteredProducts(searchEndPoint);
+  const { allProducts, isProductsError, isProductsLoading } = useProducts();
+  const { isUserDataLoading, userData } = useUser();
 
   const products = searchEndPoint ? filteredProducts : allProducts;
 
-  if (isProductsLoading) {
+  if (isProductsLoading || isFilteredProductsLoading) {
     return (
       <div className="h-dvh flex items-center justify-center">
         <Loading />
       </div>
     );
   }
-  if (isProductsError) {
+
+  if (isProductsError || isFilteredProductsError) {
     return (
       <div className="h-dvh flex items-center justify-center">
-        <h1>{error?.message}</h1>
+        <h1>There is something wrong with fetching data...</h1>
       </div>
     );
   }
+  
   return (
     <Container className="flex flex-col gap-y-4">
       <div className="flex mx-auto justify-between mt-10 items-center w-full">
