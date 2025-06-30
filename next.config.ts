@@ -5,12 +5,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "i.imgur.com",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "placeimg.dev",
+        hostname: "*",
         pathname: "/**",
       },
     ],
