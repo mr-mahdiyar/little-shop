@@ -43,7 +43,7 @@ export default function DashboardPage() {
   return (
     <Container className="flex flex-col gap-y-4">
       <Header />
-      <section className="flex flex-wrap justify-between gap-y-8">
+      <section className="grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 justify-items-center gap-8">
         {products?.map((product) => (
           <Product key={product.id} {...product} />
         ))}
